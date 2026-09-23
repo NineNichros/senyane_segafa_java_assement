@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enviro365 Investments – Withdrawal Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">💼</span>
+        <span class="logo-text">Enviro365 <span class="logo-accent">Investments</span></span>
+      </div>
+      <p class="header-sub">Withdrawal Notice Portal</p>
+    </div>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main class="container">
+
+    <!-- ── INVESTOR SELECTOR ── -->
+    <section class="card" id="section-select">
+      <h2 class="card-title">Select Investor</h2>
+      <div class="form-group">
+        <label for="investorSelect">Investor</label>
+        <select id="investorSelect">
+          <option value="">— Loading investors… —</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" id="loadPortfolioBtn">Load Portfolio</button>
+    </section>
+
+    <!-- ── PORTFOLIO DASHBOARD ── -->
+    <section class="card hidden" id="section-portfolio">
+      <h2 class="card-title">Portfolio Dashboard</h2>
+
+      <div class="investor-info" id="investorInfo"></div>
+
+      <h3 class="section-sub">Investment Products</h3>
+      <div class="table-wrapper">
+        <table id="productsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Product Name</th>
+              <th>Type</th>
+              <th>Balance (R)</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="productsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── WITHDRAWAL FORM ── -->
+    <section class="card hidden" id="section-withdrawal">
+      <h2 class="card-title">Submit Withdrawal Notice</h2>
+
+      <div id="withdrawalAlert" class="alert hidden"></div>
+
+      <form id="withdrawalForm" novalidate>
+        <div class="form-group">
+          <label for="selectedProduct">Product</label>
+          <input type="text" id="selectedProduct" readonly placeholder="Select a product above" />
+          <input type="hidden" id="hiddenProductId" />
+          <input type="hidden" id="hiddenInvestorId" />
+        </div>
+
+        <div class="form-group">
+          <label for="availableBalance">Available Balance</label>
+          <input type="text" id="availableBalance" readonly />
+        </div>
+
+        <div class="form-group">
+          <label for="withdrawalAmount">Withdrawal Amount (R) <span class="required">*</span></label>
+          <input type="number" id="withdrawalAmount" placeholder="e.g. 10000.00"
+                 min="0.01" step="0.01" />
+          <span class="field-error hidden" id="amountError"></span>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-success" id="submitWithdrawalBtn">Submit Withdrawal</button>
+          <button type="button" class="btn btn-outline" id="cancelWithdrawalBtn">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ── WITHDRAWAL HISTORY ── -->
+    <section class="card hidden" id="section-history">
+      <div class="history-header">
+        <h2 class="card-title">Withdrawal History</h2>
+        <button class="btn btn-outline btn-sm" id="downloadCsvBtn">⬇ Download CSV</button>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="historyTable">
+          <thead>
+            <tr>
+              <th>Notice #</th>
+              <th>Product</th>
+              <th>Type</th>
+              <th>Amount (R)</th>
+              <th>Balance After (R)</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody">
+            <tr><td colspan="7" class="empty-msg">No withdrawal history found.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>Enviro365 Investments &copy; 2026 &nbsp;|&nbsp; Withdrawal Notice System</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
